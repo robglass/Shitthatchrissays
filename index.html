@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Sh*t That Chris Says</title>
+	<link href='http://fonts.googleapis.com/css?family=Exo:400,900|Open+Sans:400,800|Passion+One' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
+	<style>
+		html, body{
+			height: 100%;
+			width: 100%;
+			margin: 0;
+		}
+		.container img{
+			position: absolute;
+			top: 0;
+			height: 100%;
+			width: 100%;
+			-webkit-filter: blur(2px);
+		}
+		.container .quote{
+			font-family: 'Exo', sans-serif;
+			position: absolute;
+			bottom: 50%;
+			right: 50%;
+			color: white;
+			   
+		}
+		.quote .text{
+			font-weight: bold;
+			font-size: 25px;
+			-webkit-text-stroke-width: 1px;
+   			   -webkit-text-stroke-color: #046;
+		}
+		.quote .subject{
+		}
+		.quote .date{
+			font-size: 10px;
+		}
+		.quote .subtext{
+			text-align: right;
+		}
+		.slide {
+    background-attachment: fixed;
+    width:100%;
+    height:100%;
+    position: relative;
+    box-shadow:inset 0px 10px 10px rgba(0,0,0,0.3);
+}
+.slideno {
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    font-weight: bold;
+			font-size: 75px;
+			-webkit-text-stroke-width: 1px;
+   			   -webkit-text-stroke-color: #046;
+   			   font-family: 'Exo', sans-serif;
+			color: white;
+}
+.slide {
+	    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.slide .parallaxbg{
+    position:absolute;
+    right:40px;
+    top:40px;
+    font-size:28px;
+    color:rgba(51,51,51,0.3);
+}
+
+#slide1{
+    background-image:url(code.jpg);
+}
+
+#slide2{
+    background-image:url(cobra.jpg);
+
+}
+
+#slide3{
+    background-image:url(waves.jpg);
+}
+
+#slide4{
+    background-image:url(squirrel.jpg);
+}
+#slide5{
+    background-image:url(idea.jpg);
+}
+
+	</style>
+</head>
+<body>
+	<div class="slide" id="slide1" data-slide="1" data-stellar-background-ratio="0.25">
+		<span class="slideno">This sh*t scrolls like a raging river sometimes</span>             
+	</div>
+	<div class="slide" id="slide2" data-slide="2" data-stellar-background-ratio="0.25">
+		<span class="slideno">I am the cobra</span>
+	</div>
+	<div class="slide" id="slide3" data-slide="3" data-stellar-background-ratio="0.25">
+		<span class="slideno">I'm not here to make waves.... just memories.</span>
+	</div>
+	<div class="slide" id="slide4" data-slide="4" data-stellar-background-ratio="0.25">
+		<span class="slideno">Just a squirrel tryn' to get a nut!</span>
+	</div>
+	<div class="slide" id="slide5" data-slide="5" data-stellar-background-ratio="0.25">
+		<span class="slideno">I just had a brilliant idea, gonna test it out and see if it works. More to come...</span>
+	</div>
+	<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="libs/jquery.stellar.js"></script>
+	<script>
+	$.stellar();
+	</script>
+</body>
+</html>
