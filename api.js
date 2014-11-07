@@ -62,7 +62,8 @@ var poll = function(){
                 updateClients(err);
              })
 	        .on('result', function(data){
-	        	if (! quotes.indexOf(data) >= 0){
+	        	if (! quotes.indexOf(data) > 0){
+	        		console.log(quotes.indexOf(data));
 	        		quotes.push(data);
 	        	}
 	        })
