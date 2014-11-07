@@ -1,0 +1,23 @@
+{
+  "name": "shitthatchrissayscom",
+  "version": "1.0.0",
+  "description": "APIs for Shitthatchrissays.com",
+  "main": "api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shewlayce/Shitthatchrissays.git"
+  },
+  "author": "Rob Glass",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shewlayce/Shitthatchrissays/issues"
+  },
+  "homepage": "https://github.com/shewlayce/Shitthatchrissays",
+  "dependencies": {
+    "mysql": "^2.5.3",
+    "socket.io": "^1.2.0"
+  }
+}
