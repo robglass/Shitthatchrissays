@@ -6,6 +6,7 @@ var db = mysql.createConnection({
 	password: 'c0f2458a-9e99-4a63-b826-97ec7bdc10b9',
 	database: 'shitthatchrissayscom'
 })
+var POLL_INTERVAL = 3000;
 var currentConnections = [];
 var quotes = [];
 
