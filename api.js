@@ -11,7 +11,7 @@ var currentConnections = [];
 var quotes = [];
 
 db.connect(function(err){
-	console.log(err);
+	console.log('1: 'err);
 })
 
 io.sockets.on('connection', function(socket){
@@ -23,13 +23,19 @@ io.sockets.on('connection', function(socket){
 	}
 	socket.on('add quote', function(data){
 		if (typeof data === 'object'){
-			data = {quote_text:  'apples', quote_subject: 'bannanas', quote_date: Date()}
-			db.query('INSERT INTO quotes SET ?', data, function(err, result){
-				if (err){
-					console.log(err);
-				} else{
-					console.log(result);
+			try{
+			if (data.text && data.subject && data.date){
+				data = {quote_text: data.text, quote_subject: data.subject, quote_date: data.date}
+				db.query('INSERT INTO quotes SET ?', data, function(err, result){
+					if (err){
+						console.log(err);
+					} else{
+						console.log(result);
+					}
 				}
+			} catch(err) {
+				socket.emit('error', 'invalid format');
+			}
 			});
 		}
 	})
