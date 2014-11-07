@@ -59,7 +59,6 @@ var poll = function(){
 	db.query('SELECT * from quotes;')
 	        .on('error', function(err){
              	console.log(err);
-                updateClients(err);
              })
 	        .on('result', function(data){
 	        	// onlt add to array if the object is not already in it. 
