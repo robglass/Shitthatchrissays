@@ -63,9 +63,9 @@ var poll = function(){
              })
 	        .on('result', function(data){
 	        	// onlt add to array if the object is not already in it. 
-	        	if ( quotes.indexOf(data) === -1){
-	        		console.log('adding '+ data.quote_text + 'to array.');
-	        		quotes.push(data);
+	        	if (! quotes.indexOf(data) >= 0 ){
+	        		console.log( 'adding ' + data.quote_text + ' to array.' );
+	        		quotes.push( data );
 	        	}
 	        })
 	        .on('end', function(){
