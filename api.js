@@ -11,7 +11,7 @@ var currentConnections = [];
 var quotes = [];
 
 db.connect(function(err){
-	console.log('1: 'err);
+	console.log('1: ' + err);
 })
 
 io.sockets.on('connection', function(socket){
