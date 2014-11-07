@@ -201,6 +201,13 @@
 	<script src="http://shitthatchrissays.com:3001/socket.io/socket.io.js"></script>
 	<script>
 	$.stellar();
+	$(document).ready(function(){
+		var socket = io.connect('http://shitthatchrissays.com:3001');
+
+		socket.on('new quote', function(data){
+			console.log('Got something')
+		})
+	})
 	</script>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
