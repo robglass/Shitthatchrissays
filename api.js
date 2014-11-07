@@ -11,7 +11,9 @@ var currentConnections = [];
 var quotes = [];
 
 db.connect(function(err){
-	console.log('1: ' + err);
+	if (err) {
+		console.log(err);
+	}
 })
 
 io.sockets.on('connection', function(socket){
@@ -44,7 +46,7 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('disconnect', function(){
 		var socketIndex = currentConnections.indexOf(socket);
-		console.log('Connection: '+ socket +' disconnected.')
+		console.log('Connection: '+ socketIndex +' disconnected.')
 		if (socketIndex >= 0) {
 			currentConnections.splice(socketIndex, 1)
 		}
