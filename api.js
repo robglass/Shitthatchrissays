@@ -63,7 +63,7 @@ var poll = function(){
              })
 	        .on('result', function(data){
 	        	if ( quotes.indexOf(data) === -1){
-	        		console.log(quotes.indexOf(data));
+	        		console.log('adding '+ data.text + 'to array.' ;
 	        		quotes.push(data);
 	        	}
 	        })
@@ -71,6 +71,7 @@ var poll = function(){
 	        	if(currentConnections.length){
 	        		setTimeout(poll, POLL_INTERVAL);
 	        		updateClients(quotes);
+	        		console.log('sending '+ quotes.length+" qoutes.");
 	        	}
 	        })
 }
