@@ -63,7 +63,7 @@ var poll = function(){
 	        .on('result', function(data){
 	        	// onlt add to array if the object is not already in it. 
 	        	if ( quotes.indexOf(data) === -1 ){
-	        		console.log(quotes);
+	        		console.log(quotes.indexOf(data));
 					console.log( 'adding ' + data.quote_text + ' to array.' );
 	        		console.log(data);
 	        		
