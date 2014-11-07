@@ -205,11 +205,9 @@
 	$(document).ready(function(){
 		socket = io.connect('http://shitthatchrissays.com:3001');
 
-		socket.on('new quote', function(data){
+		socket.on('quotes', function(data){
 			console.log(data)
 		});
-
-		
 	})
 
 	function sendData(data){
