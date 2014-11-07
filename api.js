@@ -53,7 +53,9 @@ var poll = function(){
                 updateClients(err);
              })
 	        .on('result', function(data){
-	        	quotes.push(data);
+	        	if (! quotes.indexOf(data) >= 0){
+	        		quotes.push(data);
+	        	}
 	        })
 	        .on('end', function(){
 	        	if(currentConnections.length){
