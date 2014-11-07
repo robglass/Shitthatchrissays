@@ -62,7 +62,8 @@ var poll = function(){
                 updateClients(err);
              })
 	        .on('result', function(data){
-	        	if ( quotes.indexOf(data.quote_text) === -1){
+	        	// onlt add to array if the object is not already in it. 
+	        	if ( quotes.indexOf(data) === -1){
 	        		console.log('adding '+ data.quote_text + 'to array.');
 	        		quotes.push(data);
 	        	}
