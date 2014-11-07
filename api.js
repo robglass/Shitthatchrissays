@@ -21,7 +21,7 @@ io.sockets.on('connection', function(socket){
 		poll();
 	}
 
-	socket.on.('disconnect', function(){
+	socket.on('disconnect', function(){
 		var socketIndex = currentConnections.indexOf(socket);
 		console.log('Connection: '+ socket +' disconnected.')
 		if (socketIndex >= 0) {
