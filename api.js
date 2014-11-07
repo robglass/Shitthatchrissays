@@ -32,7 +32,7 @@ io.sockets.on('connection', function(socket){
 						} else{
 							console.log(result);
 						}
-					}
+					});
 				}
 			} catch(err) {
 				socket.emit('error', err);
