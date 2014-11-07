@@ -38,7 +38,6 @@ io.sockets.on('connection', function(socket){
 				socket.emit('error', err);
 				console.log(err);
 			}
-			});
 		}
 	})
 
