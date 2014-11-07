@@ -62,7 +62,6 @@ var poll = function(){
              })
 	        .on('result', function(data){
 	        	// onlt add to array if the object is not already in it.
-	        	console.log(quotes); 
 	        	if ( quotes.length < data.id){
 	        		quotes.push( data );
 	        	}
