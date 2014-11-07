@@ -21,6 +21,10 @@ io.sockets.on('connection', function(socket){
 	if( ! currentConnections.length){
 		poll();
 	}
+	socket.on('add quote', function(data){
+		console.log(data);
+	})
+
 
 	socket.on('disconnect', function(){
 		var socketIndex = currentConnections.indexOf(socket);
