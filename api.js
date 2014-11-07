@@ -62,7 +62,7 @@ var poll = function(){
              })
 	        .on('result', function(data){
 	        	// onlt add to array if the object is not already in it. 
-	        	if ( quotes.length === 0 ||quotes.indexOf(data) === -1 ){
+	        	if ( quotes.length === 0 || ! quotes.indexOf(data) === -1 ){
 	        		quotes.push( data );
 	        	}
 	        })
