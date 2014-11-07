@@ -65,7 +65,7 @@ var poll = function(){
 	        	if ( ! quotes.indexOf(data) >= 0 ){
 	        		console.log('current db: '+ quotes);
 console.log( 'adding ' + data.quote_text + ' to array.' );
-	        		console.log('data: '+data);
+	        		console.log(data);
 	        		
 	        		quotes.push( data );
 	        	}
