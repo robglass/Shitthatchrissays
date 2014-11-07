@@ -62,7 +62,7 @@ var poll = function(){
                 updateClients(err);
              })
 	        .on('result', function(data){
-	        	if ( quotes.indexOf(data) > 0){
+	        	if ( quotes.indexOf(data) === -1){
 	        		console.log(quotes.indexOf(data));
 	        		quotes.push(data);
 	        	}
@@ -77,6 +77,6 @@ var poll = function(){
 
 var updateClients = function(data){
 	currentConnections.forEach(function(socket){
-		socket.emit('new quote', data);
+		socket.emit('quotes', data);
 	})
 }
