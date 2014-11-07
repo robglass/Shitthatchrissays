@@ -22,7 +22,16 @@ io.sockets.on('connection', function(socket){
 		poll();
 	}
 	socket.on('add quote', function(data){
-		console.log(data);
+		if (typeof data === 'object'){
+			data = {quote_text:  'apples', quote_subject: 'bannanas', quote_date: Date()}
+			db.query('INSERT INTO quotes SET ?', data, function(err, result){
+				if (err){
+					console.log(err);
+				} else{
+					console.log(result);
+				}
+			});
+		}
 	})
 
 
