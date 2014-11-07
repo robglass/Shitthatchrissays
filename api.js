@@ -24,17 +24,19 @@ io.sockets.on('connection', function(socket){
 	socket.on('add quote', function(data){
 		if (typeof data === 'object'){
 			try{
-			if (data.text && data.subject && data.date){
-				data = {quote_text: data.text, quote_subject: data.subject, quote_date: data.date}
-				db.query('INSERT INTO quotes SET ?', data, function(err, result){
-					if (err){
-						console.log(err);
-					} else{
-						console.log(result);
+				if (data.text && data.subject && data.date){
+					data = {quote_text: data.text, quote_subject: data.subject, quote_date: data.date};
+					db.query('INSERT INTO quotes SET ?', data, function(err, result){
+						if (err){
+							console.log(err);
+						} else{
+							console.log(result);
+						}
 					}
 				}
 			} catch(err) {
-				socket.emit('error', 'invalid format');
+				socket.emit('error', err);
+				console.log(err);
 			}
 			});
 		}
