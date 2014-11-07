@@ -34,7 +34,7 @@ io.sockets.on('connection', function(socket){
 })
 
 var poll = function(){
-	db.query('SELECT * from Quotes;')
+	db.query('SELECT * from quotes;')
 	        .on('error', function(err){
              	console.log(err);
                 updateClients(err);
