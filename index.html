@@ -6,6 +6,46 @@
 	<link href='http://fonts.googleapis.com/css?family=Exo:400,900|Open+Sans:400,800|Passion+One' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.3.0/build/cssreset/reset-min.css">
 	<style>
+		  .item {
+      position: relative;
+      margin: 10px;
+      background: #F5F5F5;
+      padding: 20px;
+    }
+    
+    .remove {
+      position: absolute;
+      right: 10;
+      top: 10;
+      opacity: 0.5;
+    }
+    
+    textarea {
+      width: 100%;
+      margin: 2px 0px;
+      height: 120px;
+      font-family: Courier;
+      border: none;
+      background: whitesmoke;
+    }
+    
+    #results {
+      position: relative;
+      margin: 50px;
+    }
+    #dropper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    #dropper.hover {
+      opacity: 0.5;
+      background: lightblue;
+      z-index: 100;
+    }
+
 		html, body{
 			height: 100%;
 			width: 100%;
@@ -90,6 +130,10 @@
 		}
 		#slide11{
 		    background-image:url(images/money.jpg);
+		}
+		#lastSlide{
+    		background-color:#5c9900;
+     		height: 300px;
 		}
 	</style>
 </head>
@@ -195,6 +239,18 @@
 				<span class='date'>8/29/2014</span>
 			</div>
 		</div>
+	</div>
+	<div class="slide" id="lastSlide" data-slide="9" data-stellar-background-ratio="0.25">
+		<div>
+    <h2>Add Chris-ism</h2>
+  
+    <input type="text" placeholder='Quote to add.'>
+    <input type="text" placeholder='Subject'>
+    <input type="text" placeholder='date'>
+    <button>Add</button>
+      <h4>Drop image file here</h4>
+    <div id="dropper"></div> 
+    <div id="results"></div>
 	</div>	
 	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/stellar.js/0.6.2/jquery.stellar.min.js"></script>
@@ -216,6 +272,59 @@
 	function sendData(data){
 			socket.emit('add quote', data);
 	}
+	    var imgFile = '';
+    if (typeof window.FileReader === 'undefined')
+      alert('File API & FileReader not supported');
+    
+    var dropper = document.getElementById("dropper");
+    var results = document.getElementById("results");
+    
+    dropper.ondragover = function () { dropper.className = 'hover'; return false; };
+    dropper.ondragend = function () { dropper.className = ''; return false; };
+    dropper.ondrop = function (e) {
+      e.preventDefault();
+      var file = e.dataTransfer.files[0],
+          reader = new FileReader();
+      reader.onload = function(event) {
+        fileLoaded(file.name, event.target.result);
+      };
+      reader.readAsDataURL(file);
+      dropper.className = '';
+      return false;
+    };
+    
+    function fileLoaded(filename, dataUri) {
+    
+      var div = document.createElement("div");
+      div.className = 'item';
+    
+      var remove = document.createElement("button");
+      remove.className = 'remove';
+      remove.innerHTML = 'x';
+      remove.onclick = function() {
+        if(localStorage) localStorage.removeItem(filename);
+        results.removeChild(div);
+      };
+      div.appendChild(remove);
+    
+      var name = document.createElement("div");
+      name.innerHTML = filename;
+      div.appendChild(name);
+    
+      if(/^data:image/.test(dataUri)) {
+        var imgDiv = document.createElement("div");
+        var img = document.createElement("img");
+        img.src = dataUri;
+        img.style['max-width'] = '100px';
+        img.style['height-width'] = '100px';
+        imgDiv.appendChild(img);
+        div.appendChild(imgDiv);
+      }
+      imgFile = dataUri;
+      results.innerHTML = "";
+      results.appendChild(div);
+    }
+
 	</script>
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

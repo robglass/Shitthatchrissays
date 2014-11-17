@@ -54,7 +54,7 @@ io.sockets.on('connection', function(socket){
 	console.log('New connenction.');
 	currentConnections.push(socket);
 })
-
+var updatedFlag = false;
 var poll = function(){
 	db.query('SELECT * from quotes;')
 	        .on('error', function(err){
@@ -64,13 +64,17 @@ var poll = function(){
 	        	// onlt add to array if the object is not already in it.
 	        	if ( quotes.length < data.id){
 	        		quotes.push( data );
+	        		updatedFlag = true;
 	        	}
 	        })
 	        .on('end', function(){
 	        	if(currentConnections.length){
 	        		setTimeout(poll, POLL_INTERVAL);
-	        		updateClients(quotes);
-	        		console.log('sending '+ quotes.length+" qoutes.");
+	        		if (updatedFlag){
+	        			updateClients(quotes);
+	        			console.log('sending '+ quotes.length+" qoutes.");
+	        			updatedFlag = false;
+	        		}
 	        	}
 	        })
 }
