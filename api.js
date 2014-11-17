@@ -78,7 +78,7 @@ var poll = function(){
 	        	}
 	        })
 }
-
+// TODO
 var updateClients = function(data){
 	currentConnections.forEach(function(socket){
 		socket.emit('quotes', data);
