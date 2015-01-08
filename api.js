@@ -6,6 +6,7 @@ var db = mysql.createConnection({
 	password: 'c0f2458a-9e99-4a63-b826-97ec7bdc10b9',
 	database: 'shitthatchrissayscom'
 })
+var randomstring = require('randomstring');
 var POLL_INTERVAL = 3000;
 var currentConnections = [];
 var quotes = [];
@@ -26,8 +27,13 @@ io.sockets.on('connection', function(socket){
 	socket.on('add quote', function(data){
 		if (typeof data === 'object'){
 			try{
-				if (data.text && data.subject && data.date){
-					data = {quote_text: data.text, quote_subject: data.subject, quote_date: data.date};
+        var img = decodeBase64Image(data.img);
+        imgName = '/images/'+randomstring(7)+'.jpg'
+        fs.writeFile(/image/randomstring(7)+'.jpg', imageBuffer.data, function(err) {
+          throw err;
+        });
+				if (data.text && data.subject && data.date && imgName){
+					data = {quote_text: data.text, quote_subject: data.subject, quote_date: data.date, img: imgName};
 					db.query('INSERT INTO quotes SET ?', data, function(err, result){
 						if (err){
 							console.log(err);
@@ -83,3 +89,18 @@ var updateClients = function(data){
 		socket.emit('quotes', data);
 	})
 }
+
+function decodeBase64Image(dataString) {
+  var matches = dataString.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+    response = {};
+
+  if (matches.length !== 3) {
+    return new Error('Invalid input string');
+  }
+
+  response.type = matches[1];
+  response.data = new Buffer(matches[2], 'base64');
+
+  return response;
+}
+

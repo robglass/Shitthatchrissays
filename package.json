@@ -14,6 +14,7 @@
   "homepage": "https://github.com/shewlayce/Shitthatchrissays",
   "dependencies": {
     "mysql": "^2.5.3",
+    "randomstring": "^1.0.3",
     "socket.io": "^1.2.0"
   },
   "devDependencies": {
